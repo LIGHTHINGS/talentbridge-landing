@@ -1,447 +1,530 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import React from 'react';
+import Link from 'next/link';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import ImagePlaceholder from '@/components/ImagePlaceholder';
 
-const RECRUITER_STEPS = [
-  {
-    step: "01",
-    title: "Post a Job",
-    body: "Draft high-impact job descriptions that the AI uses to understand your exact requirements.",
-  },
-  {
-    step: "02",
-    title: "AI Screens",
-    body: "Our engine parses thousands of resumes instantly, identifying top-tier matches with surgical precision.",
-  },
-  {
-    step: "03",
-    title: "Better Decisions",
-    body: "Review AI-generated summaries and ranking reports to hire the absolute best fit for your team.",
-  },
-];
-
-const CANDIDATE_STEPS = [
-  {
-    step: "01",
-    title: "Create Profile",
-    body: "Upload your CV and let our AI build a dynamic profile that highlights your true potential.",
-  },
-  {
-    step: "02",
-    title: "Find & Apply",
-    body: "Get matched with roles where you actually fit. No more sending applications into the void.",
-  },
-  {
-    step: "03",
-    title: "Track Applications",
-    body: "Stay updated with transparent status indicators throughout the entire hiring journey.",
-  },
-];
-
-const ENGINES = [
-  {
-    icon: "file",
-    title: "AI CV Parsing",
-    body: "Extract structured data from any resume format with 99.8% accuracy. Say goodbye to manual entry.",
-  },
-  {
-    icon: "sparkle",
-    title: "AI Resume Summaries",
-    body: "Get a concise, objective summary of career highlights and unique value propositions in seconds.",
-  },
-  {
-    icon: "search",
-    title: "AI CV-to-Job Matching",
-    body: "Context-aware matching that understands semantic skills and experience relevance beyond keywords.",
-  },
-  {
-    icon: "chart",
-    title: "AI Candidate Ranking",
-    body: "Automatically rank candidates based on multidimensional scoring tailored specifically to your role.",
-  },
-  {
-    icon: "target",
-    title: "Competency Assessment",
-    body: "Generate automated technical and soft skill assessments based on declared expertise.",
-  },
-  {
-    icon: "compare",
-    title: "Candidate Comparison",
-    body: "Side-by-side comparative analytics to highlight subtle differences between top contenders.",
-  },
-];
-
-function EngineIcon({ name }: { name: string }) {
-  const common = {
-    width: 20,
-    height: 20,
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 1.6,
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-  };
-  switch (name) {
-    case "file":
-      return (
-        <svg {...common}>
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-          <path d="M14 2v6h6" />
-        </svg>
-      );
-    case "sparkle":
-      return (
-        <svg {...common}>
-          <path d="M12 3l1.8 4.9L19 9.7l-4.9 1.8L12 16.4l-1.8-4.9L5 9.7l4.9-1.8z" />
-        </svg>
-      );
-    case "search":
-      return (
-        <svg {...common}>
-          <circle cx="11" cy="11" r="7" />
-          <path d="M21 21l-4.3-4.3" />
-        </svg>
-      );
-    case "chart":
-      return (
-        <svg {...common}>
-          <path d="M3 3v18h18" />
-          <path d="M7 15l4-5 3 3 5-7" />
-        </svg>
-      );
-    case "target":
-      return (
-        <svg {...common}>
-          <circle cx="12" cy="12" r="8" />
-          <circle cx="12" cy="12" r="4" />
-          <circle cx="12" cy="12" r="0.6" fill="currentColor" />
-        </svg>
-      );
-    case "compare":
-      return (
-        <svg {...common}>
-          <path d="M8 3v18M16 3v18" />
-          <path d="M4 8h4M4 16h4M16 8h4M16 16h4" />
-        </svg>
-      );
-    default:
-      return null;
-  }
-}
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <div id="top" className="flex min-h-full flex-col bg-white text-[var(--color-ink)]">
-      <Header />
+    <div className="flex min-h-screen flex-col bg-white text-[#14141f]">
+      {/* Header */}
+      <Header activePage="platform" />
 
       <main className="flex-1">
-        {/* HERO */}
-        <section className="mx-auto max-w-6xl px-6 pb-20 pt-16 sm:pt-24">
-          <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_1fr]">
-            <div>
+        {/* HERO SECTION */}
+        <section className="relative overflow-hidden bg-grid-light pt-14 pb-16 sm:pt-20 sm:pb-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            {/* Title with decorative sparkles */}
+            <div className="relative inline-block max-w-4xl">
+              {/* Left subtle sparkle */}
+              <span className="absolute -left-6 -top-2 text-gray-400 sm:-left-10 sm:top-2">
+                <svg className="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+                </svg>
+              </span>
+
               <h1
-                className="text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl"
-                style={{ fontFamily: "var(--font-manrope)" }}
+                className="text-4xl font-extrabold tracking-tight text-gray-950 sm:text-5xl lg:text-6xl leading-[1.12]"
+                style={{ fontFamily: 'var(--font-manrope)' }}
               >
-                Smarter Recruitment.
-                <br />
-                Better Talent.
-                <br />
-                Faster Hiring.
+                Smarter Recruitment. Better Talent.{' '}
+                <span className="text-[#f2622a] inline-flex items-center gap-1.5">
+                  Faster Hiring.
+                  <svg className="h-6 w-6 sm:h-7 sm:w-7 text-[#f2622a] inline-block" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+                  </svg>
+                </span>
               </h1>
-              <p className="mt-6 max-w-md text-[15px] leading-relaxed text-[var(--color-ink)]/60">
-                An AI-powered recruitment platform that helps recruiters
-                screen, match, rank, and evaluate candidates with
-                human-centric precision at scale.
-              </p>
-
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a
-                  href="#get-started"
-                  className="rounded-full bg-[var(--color-orange)] px-6 py-3 text-sm font-medium text-white transition hover:bg-[var(--color-orange-dark)]"
-                >
-                  Start Hiring Now
-                </a>
-                <a
-                  href="#opportunities"
-                  className="rounded-full border border-[var(--color-ink)]/15 px-6 py-3 text-sm font-medium transition hover:border-[var(--color-ink)]/40"
-                >
-                  Find Opportunities
-                </a>
-              </div>
-
-              <div className="mt-12">
-                <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-ink)]/35">
-                  Trusted by teams at
-                </p>
-                <div className="mt-3 flex items-center gap-3">
-                  {[0, 1, 2].map((i) => (
-                    <div
-                      key={i}
-                      className="h-8 w-8 rounded-full bg-[var(--color-ink)]/10"
-                    />
-                  ))}
-                </div>
-              </div>
             </div>
 
-            <div className="relative">
-              <ImagePlaceholder
-                imageUrl="/public/team.png"
-                ratio="aspect-[4/3]"
-              />
-              <div className="absolute -bottom-6 left-6 flex items-center gap-3 rounded-2xl border border-[var(--color-line)] bg-white px-4 py-3 shadow-[0_12px_30px_-12px_rgba(20,20,31,0.25)] sm:left-8">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-orange)]/10 text-[var(--color-orange)]">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M3 17l5-5 4 4 8-9" />
-                    <path d="M14 6h6v6" />
-                  </svg>
-                </span>
-                <div>
-                  <p className="text-sm font-semibold leading-none">85%</p>
-                  <p className="mt-1 text-xs text-[var(--color-ink)]/50">
-                    Faster Screening
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* PRECISION ENGINEERING INTRO */}
-        <section id="how-it-works" className="border-t border-[var(--color-line)] bg-[var(--color-cream)]/60">
-          <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-            <h2
-              className="text-2xl font-bold tracking-tight sm:text-3xl"
-              style={{ fontFamily: "var(--font-manrope)" }}
-            >
-              Precision Engineering for Every Role
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-[15px] leading-relaxed text-[var(--color-ink)]/60">
-              Two distinct journeys, one unified objective: making
-              recruitment effortless and highly effective.
+            <p className="mx-auto mt-6 max-w-2xl text-sm sm:text-base leading-relaxed text-gray-600">
+              Where transparency meets precision. Recruitment redefined for both sides of the hiring equation. Hire smarter with AI and experience a faster, modern talent acquisition platform.
             </p>
-          </div>
-        </section>
 
-        {/* FOR RECRUITERS */}
-        <section className="mx-auto max-w-6xl px-6 py-20">
-          <div className="grid items-center gap-14 lg:grid-cols-[1fr_1.05fr]">
-            <div>
-              <div className="mb-6 flex items-center gap-2.5">
-                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-ink)] text-white">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <path d="M4 19h16M4 15h10M4 11h16M4 7h10" />
-                  </svg>
-                </span>
-                <h3
-                  className="text-lg font-semibold"
-                  style={{ fontFamily: "var(--font-manrope)" }}
-                >
-                  For Recruiters
-                </h3>
-              </div>
-
-              <ol className="space-y-8">
-                {RECRUITER_STEPS.map((s) => (
-                  <li key={s.step} className="flex gap-4">
-                    <span className="text-sm font-semibold text-[var(--color-ink)]/25">
-                      {s.step}
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold">{s.title}</p>
-                      <p className="mt-1 text-sm leading-relaxed text-[var(--color-ink)]/60">
-                        {s.body}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-
-            <ImagePlaceholder
-              imageUrl="/public/computer.png"
-              ratio="aspect-[4/3.2]"
-            />
-          </div>
-        </section>
-
-        {/* FOR CANDIDATES */}
-        <section id="solutions" className="mx-auto max-w-6xl px-6 pb-20">
-          <div className="grid items-center gap-14 lg:grid-cols-[1fr_1.05fr]">
-            <ImagePlaceholder
-              imageUrl="/public/lady.png"
-              ratio="aspect-[4/3.2]"
-              className="order-2 lg:order-1"
-            />
-
-            <div className="order-1 lg:order-2">
-              <div className="mb-6 flex items-center gap-2.5">
-                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-orange)] text-white">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" />
-                  </svg>
-                </span>
-                <h3
-                  className="text-lg font-semibold"
-                  style={{ fontFamily: "var(--font-manrope)" }}
-                >
-                  For Candidates
-                </h3>
-              </div>
-
-              <ol className="space-y-8">
-                {CANDIDATE_STEPS.map((s) => (
-                  <li key={s.step} className="flex gap-4">
-                    <span className="text-sm font-semibold text-[var(--color-ink)]/25">
-                      {s.step}
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold">{s.title}</p>
-                      <p className="mt-1 text-sm leading-relaxed text-[var(--color-ink)]/60">
-                        {s.body}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </section>
-
-        {/* CORE INTELLIGENCE ENGINES */}
-        <section id="features" className="bg-[var(--color-navy)] py-20 text-white">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="mx-auto max-w-xl text-center">
-              <h2
-                className="text-2xl font-bold tracking-tight sm:text-3xl"
-                style={{ fontFamily: "var(--font-manrope)" }}
+            {/* CTA Buttons */}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/recruiters"
+                className="rounded-lg bg-[#f2622a] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#d94f1c] active:scale-[0.98]"
               >
-                Core Intelligence Engines
-              </h2>
-              <p className="mt-4 text-[15px] leading-relaxed text-white/55">
-                Advanced algorithms designed to remove friction and bias from
-                the hiring process.
-              </p>
+                Start Hiring
+              </Link>
+              <Link
+                href="/candidates"
+                className="rounded-lg border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-800 shadow-xs transition hover:bg-gray-50 hover:border-gray-300 active:scale-[0.98]"
+              >
+                Find Jobs
+              </Link>
             </div>
 
-            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {ENGINES.map((engine) => (
-                <div
-                  key={engine.title}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-white/20 hover:bg-white/[0.05]"
+            {/* Central Hero Image Placeholder with Floating Badge */}
+            <div className="relative mx-auto mt-12 max-w-4xl sm:mt-16">
+              {/* Right decorative burst */}
+              <div className="pointer-events-none absolute -right-4 -top-8 text-[#f2622a] opacity-80 sm:-right-8 sm:-top-10">
+                <svg className="h-10 w-10 sm:h-12 sm:w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                </svg>
+              </div>
+
+              <div className="relative rounded-2xl p-1 bg-gradient-to-b from-gray-200 to-gray-300/40 shadow-xl">
+                <ImagePlaceholder
+                  label="Recruitment Analytics Workspace"
+                  description="Professional reviewing candidates on high-tech tablet displaying real-time match rankings"
+                  aspectRatio="aspect-[4/3] sm:aspect-[16/9]"
+                  className="rounded-xl shadow-inner"
+                  imageUrl='/image1.png'
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-orange)]/15 text-[var(--color-orange)]">
-                    <EngineIcon name={engine.icon} />
-                  </span>
-                  <h4 className="mt-5 text-[15px] font-semibold">
-                    {engine.title}
-                  </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-white/55">
-                    {engine.body}
-                  </p>
+                  {/* Floating match badge bottom right */}
+                  <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 flex items-center gap-3 rounded-xl border border-gray-100 bg-white/95 px-4 py-2.5 shadow-lg backdrop-blur-sm sm:px-5 sm:py-3">
+                    <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-orange-50 text-[#f2622a] border border-orange-200">
+                      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                        <polyline points="17 6 23 6 23 12" />
+                      </svg>
+                    </div>
+                    <div className="text-left">
+                      <p className="text-base sm:text-lg font-bold leading-none text-gray-900">85%</p>
+                      <p className="mt-1 text-[11px] font-medium uppercase tracking-wider text-gray-500">
+                        Faster Screening
+                      </p>
+                    </div>
+                  </div>
+                </ImagePlaceholder>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 2: TOO MANY CVS. TOO LITTLE TIME */}
+        <section className="relative overflow-hidden bg-[#0d1021] bg-grid-dark py-16 sm:py-24 text-white">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+              {/* Left Content */}
+              <div>
+                <h2
+                  className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl leading-tight"
+                  style={{ fontFamily: 'var(--font-manrope)' }}
+                >
+                  Too Many <span className="text-[#f2622a]">CVs</span>. Too Little Time.
+                </h2>
+                <p className="mt-5 text-sm sm:text-base leading-relaxed text-slate-300 max-w-xl">
+                  Our recruitment platform transforms tedious resume screening into a fast, data-driven workflow. Automatically extract structured candidate profiles, remove bias, and rank candidates with incredible precision.
+                </p>
+
+                {/* 3 Key Points */}
+                <div className="mt-8 space-y-4">
+                  <div className="flex items-center gap-3.5">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-orange-500/20 text-[#f2622a] border border-orange-500/30">
+                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2-6.3-4.6-6.3 4.6 2.3-7.2-6-4.4h7.6z" />
+                      </svg>
+                    </span>
+                    <span className="text-sm sm:text-base font-medium text-slate-200">
+                      10x faster resume screening &amp; shortlist
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-3.5">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-orange-500/20 text-[#f2622a] border border-orange-500/30">
+                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2-6.3-4.6-6.3 4.6 2.3-7.2-6-4.4h7.6z" />
+                      </svg>
+                    </span>
+                    <span className="text-sm sm:text-base font-medium text-slate-200">
+                      Objective AI competency scoring &amp; ranking
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-3.5">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-orange-500/20 text-[#f2622a] border border-orange-500/30">
+                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2-6.3-4.6-6.3 4.6 2.3-7.2-6-4.4h7.6z" />
+                      </svg>
+                    </span>
+                    <span className="text-sm sm:text-base font-medium text-slate-200">
+                      Transparent candidate-recruiter messaging
+                    </span>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* DUAL AUDIENCE CTA CARDS */}
-        <section className="mx-auto max-w-6xl px-6 py-20">
-          <div className="grid gap-6 sm:grid-cols-2">
-            <div className="relative flex min-h-[280px] flex-col justify-end overflow-hidden rounded-3xl border border-[var(--color-line)] p-8">
-              <ImagePlaceholder
-                imageUrl="/publc/team.png"
-                ratio="aspect-auto"
-                dark
-                className="absolute inset-0 rounded-3xl"
-              />
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
-              <div className="relative">
-                <h3
-                  className="text-xl font-bold text-white"
-                  style={{ fontFamily: "var(--font-manrope)" }}
-                >
-                  Hire Smarter with AI.
-                </h3>
-                <p className="mt-2 max-w-xs text-sm leading-relaxed text-white/75">
-                  Screen CVs, identify qualified candidates, and build
-                  diverse teams faster than ever.
-                </p>
-                <a
-                  href="#recruiter-trial"
-                  className="mt-5 inline-block rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[var(--color-ink)] transition hover:bg-white/90"
-                >
-                  Start Recruiter Trial
-                </a>
               </div>
-            </div>
 
-            <div className="relative flex min-h-[280px] flex-col justify-end overflow-hidden rounded-3xl border border-[var(--color-line)] p-8">
-              <ImagePlaceholder
-                imageUrl="/public/lady.png"
-                ratio="aspect-auto"
-                dark
-                className="absolute inset-0 rounded-3xl"
-              />
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-[var(--color-orange-dark)]/95 via-[var(--color-orange)]/45 to-[var(--color-orange)]/10" />
+              {/* Right Content: Applicant Shortlist Card UI */}
               <div className="relative">
-                <h3
-                  className="text-xl font-bold text-white"
-                  style={{ fontFamily: "var(--font-manrope)" }}
-                >
-                  Join as a Candidate.
-                </h3>
-                <p className="mt-2 max-w-xs text-sm leading-relaxed text-white/85">
-                  Find opportunities that match your skills. Get noticed by
-                  the right employers through AI-enhanced profiles.
-                </p>
-                <a
-                  href="#candidate-profile"
-                  className="mt-5 inline-block rounded-full bg-black/80 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-black"
-                >
-                  Create Candidate Profile
-                </a>
+                <div className="rounded-2xl border border-white/10 bg-[#161b33]/90 p-5 sm:p-6 shadow-2xl backdrop-blur-md">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                    <div className="flex items-center gap-2.5">
+                      <span className="h-2 w-2 rounded-full bg-[#f2622a]" />
+                      <span className="text-sm font-semibold tracking-wide text-white">
+                        Applicant Shortlist
+                      </span>
+                    </div>
+                    <span className="text-xs text-slate-400 bg-white/5 px-2.5 py-1 rounded-md border border-white/10">
+                      AI Ranked
+                    </span>
+                  </div>
+
+                  {/* Candidate Items */}
+                  <div className="mt-4 space-y-3">
+                    {/* Candidate 1 */}
+                    <div className="flex items-center justify-between rounded-xl bg-white/5 p-3.5 transition hover:bg-white/10 border border-white/5">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-600/30 text-purple-300 font-bold text-sm border border-purple-500/30">
+                          JD
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-white leading-snug">Jane Doe</p>
+                          <p className="text-xs text-slate-400">Senior Frontend Engineer</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-1 text-xs font-semibold text-emerald-400">
+                        <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <polyline points="18 15 12 9 6 15" />
+                        </svg>
+                        94% Match
+                      </div>
+                    </div>
+
+                    {/* Candidate 2 */}
+                    <div className="flex items-center justify-between rounded-xl bg-white/5 p-3.5 transition hover:bg-white/10 border border-white/5">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-indigo-600/30 text-indigo-300 font-bold text-sm border border-indigo-500/30">
+                          AS
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-white leading-snug">Alex Smith</p>
+                          <p className="text-xs text-slate-400">Product Designer</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1.5 rounded-lg bg-orange-500/15 border border-orange-500/30 px-2.5 py-1 text-xs font-semibold text-orange-400">
+                        <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <polyline points="18 15 12 9 6 15" />
+                        </svg>
+                        89% Match
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* CLOSING CTA */}
-        <section id="pricing" className="bg-[var(--color-cream)]/60">
-          <div className="mx-auto max-w-6xl px-6 py-16">
-            <div className="rounded-[2rem] bg-white px-8 py-16 text-center shadow-[0_20px_60px_-30px_rgba(20,20,31,0.2)]">
-              <h2
-                className="text-2xl font-bold tracking-tight sm:text-3xl"
-                style={{ fontFamily: "var(--font-manrope)" }}
-              >
-                Ready to Transform Recruitment?
-              </h2>
-              <p className="mx-auto mt-4 max-w-lg text-[15px] leading-relaxed text-[var(--color-ink)]/60">
-                Join forward-thinking companies and talented professionals on
-                the world&apos;s most advanced hiring platform.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <a
-                  href="#get-started"
-                  className="rounded-full bg-[var(--color-orange)] px-6 py-3 text-sm font-medium text-white transition hover:bg-[var(--color-orange-dark)]"
-                >
-                  Start Hiring
-                </a>
-                <a
-                  href="#opportunities"
-                  className="rounded-full border border-[var(--color-ink)]/15 px-6 py-3 text-sm font-medium transition hover:border-[var(--color-ink)]/40"
-                >
-                  Find Your Next Opportunity
-                </a>
+        {/* SECTION 3: PRECISION ENGINEERING FOR EVERY ROLE */}
+        <section className="py-16 sm:py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            <h2
+              className="text-3xl font-extrabold tracking-tight sm:text-4xl text-gray-950"
+              style={{ fontFamily: 'var(--font-manrope)' }}
+            >
+              <span className="text-[#f2622a]">Precision</span> Engineering for Every Role
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-sm sm:text-base leading-relaxed text-gray-600">
+              A dual-sided platform built to remove friction and drive modern talent acquisition workflows.
+            </p>
+
+            {/* Two Side-by-Side Cards */}
+            <div className="mt-12 grid gap-8 md:grid-cols-2 text-left">
+              {/* For Recruiters Card */}
+              <div className="rounded-2xl border border-gray-200/90 bg-white p-6 sm:p-8 shadow-xs hover:shadow-md transition">
+                <div className="flex items-center gap-3 border-b border-gray-100 pb-5">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-[#f2622a] border border-orange-200">
+                    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                    </svg>
+                  </div>
+                  <h3
+                    className="text-xl font-bold text-gray-900"
+                    style={{ fontFamily: 'var(--font-manrope)' }}
+                  >
+                    For Recruiters
+                  </h3>
+                </div>
+
+                <div className="mt-6 space-y-6">
+                  {/* Step 1 */}
+                  <div className="flex gap-4">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-orange-100/70 text-xs font-bold text-[#f2622a]">
+                      01
+                    </span>
+                    <div>
+                      <h4 className="text-sm font-bold text-gray-900">Post a Job</h4>
+                      <p className="mt-1 text-xs sm:text-sm text-gray-600 leading-relaxed">
+                        Draft high-impact job descriptions that the AI uses to understand your exact requirements.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Step 2 */}
+                  <div className="flex gap-4">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-orange-100/70 text-xs font-bold text-[#f2622a]">
+                      02
+                    </span>
+                    <div>
+                      <h4 className="text-sm font-bold text-gray-900">AI Screens</h4>
+                      <p className="mt-1 text-xs sm:text-sm text-gray-600 leading-relaxed">
+                        Our engine parses thousands of resumes instantly, identifying top-tier matches with surgical precision.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div className="flex gap-4">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-orange-100/70 text-xs font-bold text-[#f2622a]">
+                      03
+                    </span>
+                    <div>
+                      <h4 className="text-sm font-bold text-gray-900">Better Decisions</h4>
+                      <p className="mt-1 text-xs sm:text-sm text-gray-600 leading-relaxed">
+                        Review AI-generated summaries and ranking reports to hire the absolute best fit for your team.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* For Candidates Card */}
+              <div className="rounded-2xl border border-gray-200/90 bg-white p-6 sm:p-8 shadow-xs hover:shadow-md transition">
+                <div className="flex items-center gap-3 border-b border-gray-100 pb-5">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-50 text-purple-600 border border-purple-200">
+                    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </div>
+                  <h3
+                    className="text-xl font-bold text-gray-900"
+                    style={{ fontFamily: 'var(--font-manrope)' }}
+                  >
+                    For Candidates
+                  </h3>
+                </div>
+
+                <div className="mt-6 space-y-6">
+                  {/* Step 1 */}
+                  <div className="flex gap-4">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-purple-100/70 text-xs font-bold text-purple-700">
+                      01
+                    </span>
+                    <div>
+                      <h4 className="text-sm font-bold text-gray-900">Create Profile</h4>
+                      <p className="mt-1 text-xs sm:text-sm text-gray-600 leading-relaxed">
+                        Upload your CV and let our AI build a dynamic profile that highlights your true potential.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Step 2 */}
+                  <div className="flex gap-4">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-purple-100/70 text-xs font-bold text-purple-700">
+                      02
+                    </span>
+                    <div>
+                      <h4 className="text-sm font-bold text-gray-900">Find &amp; Apply</h4>
+                      <p className="mt-1 text-xs sm:text-sm text-gray-600 leading-relaxed">
+                        Get matched with roles where you actually fit. No more sending applications into the void.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div className="flex gap-4">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-purple-100/70 text-xs font-bold text-purple-700">
+                      03
+                    </span>
+                    <div>
+                      <h4 className="text-sm font-bold text-gray-900">Track Applications</h4>
+                      <p className="mt-1 text-xs sm:text-sm text-gray-600 leading-relaxed">
+                        Stay updated with transparent status indicators throughout the entire hiring journey.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 4: CORE INTELLIGENCE ENGINES */}
+        <section className="bg-[#edeef1] py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            <h2
+              className="text-3xl font-extrabold tracking-tight sm:text-4xl text-gray-950"
+              style={{ fontFamily: 'var(--font-manrope)' }}
+            >
+              Core <span className="text-[#f2622a]">Intelligence</span> Engines
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-sm sm:text-base leading-relaxed text-gray-600">
+              Advanced algorithms designed to remove friction and bias from the hiring process.
+            </p>
+
+            {/* 6 Dark Cards Grid */}
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 text-left">
+              {/* Card 1 */}
+              <div className="rounded-2xl border border-slate-800 bg-[#0e1224] p-6 text-white shadow-lg transition hover:border-slate-700 hover:shadow-xl">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f2622a] text-white">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                    <polyline points="10 9 9 9 8 9" />
+                  </svg>
+                </div>
+                <h4 className="mt-5 text-base font-bold text-white">AI CV Parsing</h4>
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-300">
+                  Extract structured data from any resume format with 99.8% accuracy. Say goodbye to manual entry.
+                </p>
+              </div>
+
+              {/* Card 2 */}
+              <div className="rounded-2xl border border-slate-800 bg-[#0e1224] p-6 text-white shadow-lg transition hover:border-slate-700 hover:shadow-xl">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f2622a] text-white">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                </div>
+                <h4 className="mt-5 text-base font-bold text-white">AI Resume Summaries</h4>
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-300">
+                  Get a concise, objective summary of career highlights and unique value propositions in seconds.
+                </p>
+              </div>
+
+              {/* Card 3 */}
+              <div className="rounded-2xl border border-slate-800 bg-[#0e1224] p-6 text-white shadow-lg transition hover:border-slate-700 hover:shadow-xl">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f2622a] text-white">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                </div>
+                <h4 className="mt-5 text-base font-bold text-white">AI CV-to-Job Matching</h4>
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-300">
+                  Context-aware matching that understands semantic skills and experience relevance beyond keywords.
+                </p>
+              </div>
+
+              {/* Card 4 */}
+              <div className="rounded-2xl border border-slate-800 bg-[#0e1224] p-6 text-white shadow-lg transition hover:border-slate-700 hover:shadow-xl">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f2622a] text-white">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <line x1="18" y1="20" x2="18" y2="10" />
+                    <line x1="12" y1="20" x2="12" y2="4" />
+                    <line x1="6" y1="20" x2="6" y2="14" />
+                  </svg>
+                </div>
+                <h4 className="mt-5 text-base font-bold text-white">AI Candidate Ranking</h4>
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-300">
+                  Automatically rank candidates based on multidimensional scoring tailored specifically to your role.
+                </p>
+              </div>
+
+              {/* Card 5 */}
+              <div className="rounded-2xl border border-slate-800 bg-[#0e1224] p-6 text-white shadow-lg transition hover:border-slate-700 hover:shadow-xl">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f2622a] text-white">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="6" />
+                    <circle cx="12" cy="12" r="2" />
+                  </svg>
+                </div>
+                <h4 className="mt-5 text-base font-bold text-white">Competency Assessment</h4>
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-300">
+                  Generate automated technical and soft skill assessments based on declared expertise.
+                </p>
+              </div>
+
+              {/* Card 6 */}
+              <div className="rounded-2xl border border-slate-800 bg-[#0e1224] p-6 text-white shadow-lg transition hover:border-slate-700 hover:shadow-xl">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f2622a] text-white">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polyline points="16 3 21 3 21 8" />
+                    <line x1="4" y1="20" x2="21" y2="3" />
+                    <polyline points="21 16 21 21 16 21" />
+                    <line x1="15" y1="15" x2="21" y2="21" />
+                    <line x1="4" y1="4" x2="9" y2="9" />
+                  </svg>
+                </div>
+                <h4 className="mt-5 text-base font-bold text-white">Candidate Comparison</h4>
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-300">
+                  Side-by-side comparative analytics to highlight subtle differences between top contenders.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 5: DUAL BOTTOM BANNER CARDS */}
+        <section className="py-16 sm:py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-8 md:grid-cols-2">
+              {/* Left Card: Recruiter CTA */}
+              <div className="relative overflow-hidden rounded-3xl border border-gray-200 bg-gray-900 p-8 sm:p-10 text-white min-h-[320px] flex flex-col justify-end shadow-xl">
+                <ImagePlaceholder
+                  label="Office Team Workspace"
+                  description="Recruiting leadership evaluating candidate profiles"
+                  aspectRatio="aspect-[16/9]"
+                  // dark={true}
+                  className="absolute inset-0 h-full w-full rounded-3xl"
+                  imageUrl='/image2.png'
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/70 to-transparent" />
+
+                <div className="relative z-10 max-w-md">
+                  <h3
+                    className="text-2xl font-bold tracking-tight text-white sm:text-3xl"
+                    style={{ fontFamily: 'var(--font-manrope)' }}
+                  >
+                    Hire Smarter with AI.
+                  </h3>
+                  <p className="mt-3 text-xs sm:text-sm leading-relaxed text-gray-200">
+                    Review AI-generated summaries, candidate rankings, and hire with surgical precision.
+                  </p>
+                  <Link
+                    href="/recruiters"
+                    className="mt-6 inline-block rounded-lg bg-black/90 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm transition hover:bg-black active:scale-[0.98] border border-white/20"
+                  >
+                    Start Hiring as Recruiter
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right Card: Candidate CTA */}
+              <div className="relative overflow-hidden rounded-3xl border border-gray-200 bg-orange-950 p-8 sm:p-10 text-white min-h-[320px] flex flex-col justify-end shadow-xl">
+                <ImagePlaceholder
+                  label="Candidate Career Growth"
+                  description="Candidate exploring matching roles and insights"
+                  aspectRatio="aspect-auto"
+                  dark
+                  className="absolute inset-0 h-full w-full rounded-3xl"
+                  imageUrl='/image3.png'
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#c54316] via-[#f2622a]/70 to-transparent" />
+
+                <div className="relative z-10 max-w-md">
+                  <h3
+                    className="text-2xl font-bold tracking-tight text-white sm:text-3xl"
+                    style={{ fontFamily: 'var(--font-manrope)' }}
+                  >
+                    Find Opportunities That Match Your Skills.
+                  </h3>
+                  <p className="mt-3 text-xs sm:text-sm leading-relaxed text-orange-50">
+                    Upload your CV and let our AI match you with roles where you actually fit.
+                  </p>
+                  <Link
+                    href="/candidates"
+                    className="mt-6 inline-block rounded-lg bg-white px-5 py-2.5 text-xs sm:text-sm font-semibold text-gray-900 shadow-sm transition hover:bg-gray-100 active:scale-[0.98]"
+                  >
+                    Search Open Roles
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </section>
       </main>
 
+      {/* Footer */}
       <Footer />
     </div>
   );
